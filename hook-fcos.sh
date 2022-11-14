@@ -7,7 +7,7 @@ phase="$2"
 
 # global vars
 COREOS_TMPLT=/opt/fcos-tmplt.yaml
-COREOS_FILES_PATH=/etc/pve/geco-pve/coreos
+COREOS_FILES_PATH=/etc/pve/coreos
 YQ="/usr/local/bin/yq read --exitStatus --printMode v --stripComments --"
 
 # ==================================================================================================================================================================
