@@ -6,6 +6,7 @@ This is a fork from https://git.geco-it.net/GECO-IT-PUBLIC/fedora-coreos-proxmox
 - Fixed: the problem of `geco-motd` and `qemu-ga` during the setup of latest FCOS, according to this [post](https://forum.proxmox.com/threads/howto-wrapper-script-to-use-fedora-coreos-ignition-with-proxmox-cloud-init-system-for-docker-workloads.86494/post-463507)
 - Feature: additional custom config of Template VM base on the modifies of [Doc-Tiebeau/proxmox-flatcar](https://github.com/Doc-Tiebeau/proxmox-flatcar)
 - Feature: allow adding custom packages repo
+- Refactor: Rename to fit Cat Engineer themes
 
 ## How To
 
@@ -19,7 +20,7 @@ This is a fork from https://git.geco-it.net/GECO-IT-PUBLIC/fedora-coreos-proxmox
 2.  Clone this repository on your Proxmox server:
 
     ```shell
-    git clone https://github.com/jimlee2002/fedora-coreos-proxmox.git
+    git clone https://github.com/CatEngineer/fedora-coreos-proxmox.git
     ```
 
 3.  Get into the directory `fedora-coreos-proxmox`
@@ -66,7 +67,6 @@ This is a fork from https://git.geco-it.net/GECO-IT-PUBLIC/fedora-coreos-proxmox
         pkgs_repo=(
             # Put the URL of custom packages repo here
             "https://pkgs.tailscale.com/stable/fedora/tailscale.repo"
-            "https://download.docker.com/linux/fedora/docker-ce.repo"
         )
         
     (...)
@@ -93,3 +93,4 @@ This is a fork from https://git.geco-it.net/GECO-IT-PUBLIC/fedora-coreos-proxmox
 - [Doc-Tiebeau/proxmox-flatcar](https://github.com/Doc-Tiebeau/proxmox-flatcar)
 - [Proxmox VE - Fedora CoreOS : Un mariage presque parfait / An almost perfect Union [Geco-iT Wiki]](https://wiki.geco-it.net/public:pve_fcos)
 - [[TUTORIAL] - HOWTO : Wrapper Script to Use Fedora CoreOS Ignition with Proxmox cloud-init system for Docker workloads | Proxmox Support Forum](https://forum.proxmox.com/threads/howto-wrapper-script-to-use-fedora-coreos-ignition-with-proxmox-cloud-init-system-for-docker-workloads.86494)
+- [jimlee2002/fedora-coreos-proxmox](https://github.com/jimlee2002/fedora-coreos-proxmox)
