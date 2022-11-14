@@ -273,13 +273,13 @@
     - path: /etc/console-login-helper-messages/issue.d/00_cateng.issue
       mode: 0644
       contents:
-        inline: |
+        inline: '
 
                 |\__/,|   (`\
               _.|o o  |_   ) )
             -(((---(((--------
             
-          .
+          '
 
 # kernel config
     - path: /etc/sysctl.d/20-silence-audit.conf
