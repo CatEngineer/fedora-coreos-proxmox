@@ -333,7 +333,6 @@ systemd:
       enabled: true
       contents: |
         [Unit]
-        Description=Geco-iT Setup Qemu Guest Agent
         Before=boot-complete.target
         Description=Cat Engineer Setup Qemu Guest Agent
         Before=boot-complete.target
