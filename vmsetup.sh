@@ -108,8 +108,13 @@ if [[ ${TEMPLATE_CREATE} == "true" ]];then
                                 --tablet 0 \
                                 --boot c --bootdisk scsi0
 
+<<<<<<< HEAD
         template_vmcreated=$(date +%Y-%m-%d)
         qm set ${TEMPLATE_VMID} --description "Fedora CoreOS - Geco-iT Template
+=======
+template_vmcreated=$(date +%Y-%m-%d)
+qm set ${TEMPLATE_VMID} --description "Fedora CoreOS - Template
+>>>>>>> d7bdb64 (fix: update naming to cat engineers)
 
         - Version             : ${VERSION}
         - Cloud-init          : true

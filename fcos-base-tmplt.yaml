@@ -1,15 +1,27 @@
 #files:
 
 # motd script
-    - path: /usr/local/bin/geco-motd
+    - path: /usr/local/bin/cateng-motd
       mode: 0755
       contents:
         inline: |
           #!/bin/bash
           
-          OUT=/run/motd.d/22_geco.motd
-          
-          echo -e "\nWelcome this server\n" > ${OUT}
+          OUT=/run/motd.d/22_cateng.motd
+
+          echo -e '\e[33m                         / \ ' >> ${OUT}
+          echo -e '\e[33m  ,-.       _,---._ __  /   \ ' >> ${OUT}
+          echo -e '\e[33m /  )    .-'       `./ /     \ ' >> ${OUT}
+          echo -e '\e[33m(  (   ,'            ` \     /| ' >> ${OUT}
+          echo -e '\e[33m \  `-"             \'  \   / | ' >> ${OUT}
+          echo -e '\e[33m  `.              ,  \   \ /  | ' >> ${OUT}
+          echo -e '\e[33m   /`.          ,'-`------Y   | ' >> ${OUT}
+          echo -e '\e[33m  (            ;          |   ' ' >> ${OUT}
+          echo -e '\e[33m  |  ,-.    ,-'           |  / ' >> ${OUT}
+          echo -e '\e[33m  |  | (   | cat.engineer | / ' >> ${OUT}
+          echo -e '\e[33m  )  |  \  `._____________|/ ' >> ${OUT}
+          echo -e '\e[33m  `--'   `--\n\n' >> ${OUT}
+
           eval "$(grep -E "^(NAME=|VARIANT=)" /etc/os-release)" && echo -e "\e[33mOperating System:\e[0m ${NAME} ${VARIANT}" >> ${OUT}
           eval "$(grep ^OSTREE_VERSION /etc/os-release)" && echo -e "\e[33mVersion:\e[0m ${OSTREE_VERSION}" >> ${OUT}
           echo -e "\e[33mKernel:\e[0m $(uname -r)" >> ${OUT}
@@ -26,7 +38,7 @@
           echo -e "\e[33mPublic IPv4 Address:\e[0m $(curl https://ipv4.icanhazip.com)\n" >> ${OUT}
 
 # apply cloudinit script
-    - path: /usr/local/bin/geco-cloudinit
+    - path: /usr/local/bin/cateng-cloudinit
       mode: 0755
       contents:
         inline: |
@@ -154,10 +166,10 @@
             }
             # username
             NEWUSERNAME="$(${YQ} ${CIPATH}/user-data 'user' 2> /dev/null)" || true # cant be empty if no cloudinit user defined
-            [[ "x${NEWUSERNAME}" == "x" ]] && NEWUSERNAME="admin" # NEWUSERNAME="core" use "admin" on geco-template
+            [[ "x${NEWUSERNAME}" == "x" ]] && NEWUSERNAME="admin" # NEWUSERNAME="core" use "admin" on cateng-template
             getent passwd ${NEWUSERNAME} &> /dev/null || {
               echo -n "[INFO]: Cloudinit: add sytem user: ${NEWUSERNAME}... "
-              useradd --comment "Geco-iT CoreOS Administrator" --create-home \
+              useradd --comment "CoreOS Administrator" --create-home \
                       --groups adm,wheel,sudo,systemd-journal,docker ${NEWUSERNAME} &> /dev/null || { echo "[failed]"; exit 1; }
               echo "[done]"
             }
@@ -243,7 +255,7 @@
             nmcli connection reload
             nmcli networking off
             nmcli networking on
-            systemctl restart geco-motd.service
+            systemctl restart cateng-motd.service
             systemctl restart console-login-helper-messages-motdgen.service
           }
 
@@ -257,14 +269,17 @@
 
           exit 0 
 
-# geco-issue
-    - path: /etc/console-login-helper-messages/issue.d/00_geco.issue
+# cateng-issue
+    - path: /etc/console-login-helper-messages/issue.d/00_cateng.issue
       mode: 0644
       contents:
         inline: |
 
-          Welcome this server
-          
+                |\__/,|   (`\
+              _.|o o  |_   ) )
+            -(((---(((--------
+            
+          .
 
 # kernel config
     - path: /etc/sysctl.d/20-silence-audit.conf
@@ -279,35 +294,35 @@
 # geco-motd.service
 systemd:
   units:
-    - name: geco-motd.service
+    - name: cateng-motd.service
       enabled: true
       contents: |
         [Unit]
-        Description=Geco-iT Motd
+        Description=Cat Engineer Motd
         Before=console-login-helper-messages-motdgen.service
         After=network-online.target
 
         [Service]
         Type=oneshot
-        ExecStart=/usr/local/bin/geco-motd
+        ExecStart=/usr/local/bin/cateng-motd
         RemainAfterExit=yes
 
         [Install]
         WantedBy=multi-user.target
 
 # geco-cloudinit: apply cloudinit settings on boot
-    - name: geco-cloudinit.service
+    - name: cateng-cloudinit.service
       enabled: true
       contents: |
         [Unit]
-        Description=Geco-iT Cloudinit
+        Description=Cat Engineer Cloudinit
         Wants=network-online.target
         After=network.target network-online.target
  
         [Service]
         Type=oneshot
         TimeoutStartSec=0
-        ExecStart=/usr/local/bin/geco-cloudinit
+        ExecStart=/usr/local/bin/cateng-cloudinit
         RemainAfterExit=yes
  
         [Install]
@@ -319,6 +334,8 @@ systemd:
       contents: |
         [Unit]
         Description=Geco-iT Setup Qemu Guest Agent
+        Before=boot-complete.target
+        Description=Cat Engineer Setup Qemu Guest Agent
         Before=boot-complete.target
         After=network-online.target
         Require=network-online.target
