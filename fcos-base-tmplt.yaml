@@ -11,16 +11,16 @@
           
           echo -e "\e[33m                         / \ " >> ${OUT}
           echo -e "\e[33m  ,-.       _,---._ __  /   \ " >> ${OUT}
-          echo -e "\e[33m /  )    .-'       `./ /     \ " >> ${OUT}
-          echo -e "\e[33m(  (   ,'            ` \     /| " >> ${OUT}
-          echo -e "\e[33m \  `-\"             \'  \   / | " >> ${OUT}
-          echo -e "\e[33m  `.              ,  \   \ /  | " >> ${OUT}
-          echo -e "\e[33m   /`.          ,'-`------Y   | " >> ${OUT}
+          echo -e "\e[33m /  )    .-'       \`./ /     \ " >> ${OUT}
+          echo -e "\e[33m(  (   ,'            \` \     /| " >> ${OUT}
+          echo -e "\e[33m \  \`-\"             \'  \   / | " >> ${OUT}
+          echo -e "\e[33m  \`.              ,  \   \ /  | " >> ${OUT}
+          echo -e "\e[33m   /\`.          ,'-\`------Y   | " >> ${OUT}
           echo -e "\e[33m  (            ;          |   ' " >> ${OUT}
           echo -e "\e[33m  |  ,-.    ,-'           |  / " >> ${OUT}
           echo -e "\e[33m  |  | (   | cat.engineer | / " >> ${OUT}
-          echo -e "\e[33m  )  |  \  `._____________|/ " >> ${OUT}
-          echo -e "\e[33m  `--'   `--\n\n" >> ${OUT}
+          echo -e "\e[33m  )  |  \  \`._____________|/ " >> ${OUT}
+          echo -e "\e[33m  \`--'   \`--\n\n" >> ${OUT}
 
           eval "$(grep -E "^(NAME=|VARIANT=)" /etc/os-release)" && echo -e "\e[33mOperating System:\e[0m ${NAME} ${VARIANT}" >> ${OUT}
           eval "$(grep ^OSTREE_VERSION /etc/os-release)" && echo -e "\e[33mVersion:\e[0m ${OSTREE_VERSION}" >> ${OUT}
